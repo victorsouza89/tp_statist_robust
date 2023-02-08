@@ -1,10 +1,10 @@
 function sigma_huber = calculateHuberEstimator(m,n,c,z)
     q = chi2cdf(2*c^2,2*m);
     b = chi2cdf(2*c^2,2*m+2) + c^2*(1-q)/m;
-    tol = 10^-3;
+    tol = 10^-2;
     sigma_huberk = eye(m);
     sigma_huber = zeros(m);
-    while norm(sigma_huber-sigma_huberk,'fro') > norm(sigma_huber)*tol
+    while norm(sigma_huber-sigma_huberk,'fro') > tol
         S = zeros(m);
         for i = 1:n
             zi = z(i,:);
@@ -14,7 +14,7 @@ function sigma_huber = calculateHuberEstimator(m,n,c,z)
             else
                 phi_huber = c^2/(tk*b);
             end
-            S = S + phi_huber.*z'*z;
+            S = S + phi_huber.*zi'*zi;
         end
         S = S/n;
         sigma_huberk = m*S/trace(S);

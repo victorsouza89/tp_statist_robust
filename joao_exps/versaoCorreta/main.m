@@ -2,7 +2,7 @@ clear variables; close all;
 %% variation with n
 m = 2;
 N = 40;
-v = 1;
+v = 10;
 r = 0.1;
 %z = createTDistribution(N,m,v,r); generating N variables z of length m
 
