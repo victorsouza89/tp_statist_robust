@@ -10,7 +10,7 @@ sigma = get_sigma(m, r, theta);
 get_err = @(sigmaEST) norm(reshape(sigma-sigmaEST,m*m,1)'*reshape(sigma-sigmaEST,m*m,1),'fro');
 
 % huber estimator parameter 
-c = 1.3;
+q = 0.5;
 
 % simulation parameters
 N = 40;
@@ -35,7 +35,7 @@ for n = 1:N
         sigmaSCM = z'*z/n;
         sigmaCSCM = m*sigmaSCM/trace(sigmaSCM);
         sigmaTYLER = calculateTylerEstimator(m,n,z);
-        sigmaHUBER = calculateHuberEstimator(m,n,c,z);
+        sigmaHUBER = calculateHuberEstimator(m,n,q,z);
         % saves estimation
         eMC(k) = get_err(sigmaCSCM);
         eMCTY(k) = get_err(sigmaTYLER);
@@ -60,7 +60,7 @@ ylabel('ERMS value')
 legend('SCM','Tyler','Huber')
 
 %% variation with v 
-clear variables; clc;
+%clear variables; clc;
 %close all; 
 
 % model parameters
@@ -71,7 +71,7 @@ sigma = get_sigma(m, r, theta);
 get_err = @(sigmaEST) norm(reshape(sigma-sigmaEST,m*m,1)'*reshape(sigma-sigmaEST,m*m,1),'fro');
 
 % huber estimator parameter 
-c = 1.3;
+%q = 0.5;
 
 % simulation parameters
 V = 0.1:0.1:10;
@@ -97,7 +97,7 @@ for v_aux = 1:length(V)
         sigmaSCM = z'*z/n;
         sigmaCSCM = m*sigmaSCM/trace(sigmaSCM);
         sigmaTYLER = calculateTylerEstimator(m,n,z);
-        sigmaHUBER = calculateHuberEstimator(m,n,c,z);
+        sigmaHUBER = calculateHuberEstimator(m,n,q,z);
         % saves estimation
         eMC(k) = get_err(sigmaCSCM);
         eMCTY(k) = get_err(sigmaTYLER);
@@ -107,7 +107,7 @@ for v_aux = 1:length(V)
     ERMS_tyler(v_aux) = mean(eMCTY);
     ERMS_huber(n) = mean(eMCHU);
 end
-%%
+%% Print results in function of v
 figure 
 plot(V,ERMS)
 hold on 

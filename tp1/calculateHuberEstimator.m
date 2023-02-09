@@ -1,5 +1,5 @@
-function sigma = calculateHuberEstimator(m,n,c,z)
-    q = chi2cdf(2*c^2,2*m);
+function sigma = calculateHuberEstimator(m,n,q,z)
+    c = sqrt(chi2inv(q,2*m)/2);
     b = chi2cdf(2*c^2,2*m+2) + c^2*(1-q)/m;
     tol = 10^-2;
     sigma_k = eye(m);
