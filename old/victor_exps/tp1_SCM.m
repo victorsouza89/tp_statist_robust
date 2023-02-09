@@ -35,6 +35,8 @@ end
 figure
 plot(1:N, err_N)
 grid on
+xlabel('N') 
+ylabel('RMSE') 
 
 
 %% tries to estimate (SCM) sigma for a lot of vs
@@ -63,3 +65,5 @@ end
 figure
 plot(vs, err_v)
 grid on
+xlabel('v') 
+ylabel('RMSE') 
