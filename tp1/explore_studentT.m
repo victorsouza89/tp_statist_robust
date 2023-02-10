@@ -105,7 +105,7 @@ for v_aux = 1:length(V)
     end
     ERMS(v_aux) = mean(eMC);
     ERMS_tyler(v_aux) = mean(eMCTY);
-    ERMS_huber(n) = mean(eMCHU);
+    ERMS_huber(v_aux) = mean(eMCHU);
 end
 %% Print results in function of v
 figure 
