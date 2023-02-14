@@ -16,5 +16,5 @@ function sigma = calculateTylerEstimator(m,n,z)
         sigma_k = m*S/trace(S);
         sigma = sigma_k;
     end
-    sigma = 0.5*sigma;
+    %sigma = 0.5*sigma;
 end
